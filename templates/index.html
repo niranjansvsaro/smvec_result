@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result Scraper</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .status {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            text-align: center;
+            color: #666;
+        }
+
+        .download-section {
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="file"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"]:focus, input[type="text"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #downloadButton {
+            background-color: #008CBA;
+            width: auto;
+            display: inline-block;
+        }
+
+        #downloadButton:hover {
+            background-color: #007399;
+        }
+
+        .error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-name {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Result Scraper</h1>
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="file">Student Data File (TXT):</label>
+                <div class="file-input-wrapper">
+                    <input type="file" id="file" name="file" accept=".txt" required>
+                    <div class="file-name"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="website_url">Website URL:</label>
+                <input type="text" id="website_url" name="website_url" required 
+                       placeholder="Enter the website URL">
+            </div>
+            <button type="submit" id="submitButton">
+                <span class="button-text">Process Results</span>
+            </button>
+        </form>
+
+        <div class="error" id="errorMessage"></div>
+
+        <div id="progressSection" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div class="status" id="status"></div>
+        </div>
+
+        <div id="downloadSection" class="download-section">
+            <button id="downloadButton">
+                <span class="button-text">Download Results</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let progressInterval;
+            const submitButton = $('#submitButton');
+            const downloadButton = $('#downloadButton');
+            
+            // File input change handler
+            $('#file').on('change', function() {
+                const fileName = this.files[0]?.name || 'No file chosen';
+                $('.file-name').text(fileName);
+            });
+
+            function setLoading(button, isLoading) {
+                const buttonText = button.find('.button-text');
+                if (isLoading) {
+                    button.prop('disabled', true);
+                    buttonText.html('<span class="loading"></span> Processing...');
+                } else {
+                    button.prop('disabled', false);
+                    buttonText.text(button.attr('data-original-text') || 'Process Results');
+                }
+            }
+
+            function showError(message) {
+                $('#errorMessage').text(message).fadeIn();
+                setTimeout(() => $('#errorMessage').fadeOut(), 5000);
+            }
+
+            function checkProgress() {
+                $.ajax({
+                    url: '/progress',
+                    method: 'GET',
+                    success: function(response) {
+                        $('#progressBar').css('width', response.progress + '%');
+                        $('#status').text(response.message);
+
+                        if (response.progress >= 100) {
+                            clearInterval(progressInterval);
+                            setLoading(submitButton, false);
+                            $('#downloadSection').fadeIn();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        showError('Error checking progress: ' + error);
+                        clearInterval(progressInterval);
+                        setLoading(submitButton, false);
+                    }
+                });
+            }
+
+            $('#uploadForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                
+                // Reset UI
+                $('#errorMessage').hide();
+                $('#progressSection').hide();
+                $('#downloadSection').hide();
+                $('#progressBar').css('width', '0%');
+                setLoading(submitButton, true);
+                
+                $.ajax({
+                    url: '/upload',
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#progressSection').show();
+                        $('#status').text('Processing started...');
+                        
+                        // Start progress checking
+                        clearInterval(progressInterval);
+                        progressInterval = setInterval(checkProgress, 1000);
+                    },
+                    error: function(xhr, status, error) {
+                        const errorMsg = xhr.responseJSON ? xhr.responseJSON.error : error;
+                        showError('Upload failed: ' + errorMsg);
+                        setLoading(submitButton, false);
+                    }
+                });
+            });
+
+            // Download button click handler
+            downloadButton.on('click', function(e) {
+                e.preventDefault();
+                setLoading(downloadButton, true);
+                
+                // Create a hidden iframe for download
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+                
+                // Set iframe source to download URL
+                iframe.src = '/download';
+                
+                // Remove iframe after download starts
+                setTimeout(() => {
+                    document.body.removeChild(iframe);
+                    setLoading(downloadButton, false);
+                }, 2000);
+            });
+
+            // Clean up interval when leaving page
+            $(window).on('beforeunload', function() {
+                clearInterval(progressInterval);
+            });
+        });
+    </script>
+</body>
+</html>
