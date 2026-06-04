@@ -1,39 +1,368 @@
-function(){return (function(){/*
-
- Copyright The Closure Library Authors.
- Copyright The Closure Compiler Authors.
- SPDX-License-Identifier: Apache-2.0
-*/
-var aa=aa||{},g=this||self;/*
-
- Copyright The Closure Library Authors.
- SPDX-License-Identifier: Apache-2.0
-*/
-var ca=Array.prototype.indexOf?function(a,b){return Array.prototype.indexOf.call(a,b,void 0)}:function(a,b){if(typeof a==="string")return typeof b!=="string"||b.length!=1?-1:a.indexOf(b,0);for(var c=0;c<a.length;c++)if(c in a&&a[c]===b)return c;return-1},da=Array.prototype.some?function(a,b){return Array.prototype.some.call(a,b,void 0)}:function(a,b){for(var c=a.length,e=typeof a==="string"?a.split(""):a,d=0;d<c;d++)if(d in e&&b.call(void 0,e[d],d,a))return!0;return!1},ea=Array.prototype.every?function(a,
-b){return Array.prototype.every.call(a,b,void 0)}:function(a,b){for(var c=a.length,e=typeof a==="string"?a.split(""):a,d=0;d<c;d++)if(d in e&&!b.call(void 0,e[d],d,a))return!1;return!0};var fa={aliceblue:"#f0f8ff",antiquewhite:"#faebd7",aqua:"#00ffff",aquamarine:"#7fffd4",azure:"#f0ffff",beige:"#f5f5dc",bisque:"#ffe4c4",black:"#000000",blanchedalmond:"#ffebcd",blue:"#0000ff",blueviolet:"#8a2be2",brown:"#a52a2a",burlywood:"#deb887",cadetblue:"#5f9ea0",chartreuse:"#7fff00",chocolate:"#d2691e",coral:"#ff7f50",cornflowerblue:"#6495ed",cornsilk:"#fff8dc",crimson:"#dc143c",cyan:"#00ffff",darkblue:"#00008b",darkcyan:"#008b8b",darkgoldenrod:"#b8860b",darkgray:"#a9a9a9",darkgreen:"#006400",
-darkgrey:"#a9a9a9",darkkhaki:"#bdb76b",darkmagenta:"#8b008b",darkolivegreen:"#556b2f",darkorange:"#ff8c00",darkorchid:"#9932cc",darkred:"#8b0000",darksalmon:"#e9967a",darkseagreen:"#8fbc8f",darkslateblue:"#483d8b",darkslategray:"#2f4f4f",darkslategrey:"#2f4f4f",darkturquoise:"#00ced1",darkviolet:"#9400d3",deeppink:"#ff1493",deepskyblue:"#00bfff",dimgray:"#696969",dimgrey:"#696969",dodgerblue:"#1e90ff",firebrick:"#b22222",floralwhite:"#fffaf0",forestgreen:"#228b22",fuchsia:"#ff00ff",gainsboro:"#dcdcdc",
-ghostwhite:"#f8f8ff",gold:"#ffd700",goldenrod:"#daa520",gray:"#808080",green:"#008000",greenyellow:"#adff2f",grey:"#808080",honeydew:"#f0fff0",hotpink:"#ff69b4",indianred:"#cd5c5c",indigo:"#4b0082",ivory:"#fffff0",khaki:"#f0e68c",lavender:"#e6e6fa",lavenderblush:"#fff0f5",lawngreen:"#7cfc00",lemonchiffon:"#fffacd",lightblue:"#add8e6",lightcoral:"#f08080",lightcyan:"#e0ffff",lightgoldenrodyellow:"#fafad2",lightgray:"#d3d3d3",lightgreen:"#90ee90",lightgrey:"#d3d3d3",lightpink:"#ffb6c1",lightsalmon:"#ffa07a",
-lightseagreen:"#20b2aa",lightskyblue:"#87cefa",lightslategray:"#778899",lightslategrey:"#778899",lightsteelblue:"#b0c4de",lightyellow:"#ffffe0",lime:"#00ff00",limegreen:"#32cd32",linen:"#faf0e6",magenta:"#ff00ff",maroon:"#800000",mediumaquamarine:"#66cdaa",mediumblue:"#0000cd",mediumorchid:"#ba55d3",mediumpurple:"#9370db",mediumseagreen:"#3cb371",mediumslateblue:"#7b68ee",mediumspringgreen:"#00fa9a",mediumturquoise:"#48d1cc",mediumvioletred:"#c71585",midnightblue:"#191970",mintcream:"#f5fffa",mistyrose:"#ffe4e1",
-moccasin:"#ffe4b5",navajowhite:"#ffdead",navy:"#000080",oldlace:"#fdf5e6",olive:"#808000",olivedrab:"#6b8e23",orange:"#ffa500",orangered:"#ff4500",orchid:"#da70d6",palegoldenrod:"#eee8aa",palegreen:"#98fb98",paleturquoise:"#afeeee",palevioletred:"#db7093",papayawhip:"#ffefd5",peachpuff:"#ffdab9",peru:"#cd853f",pink:"#ffc0cb",plum:"#dda0dd",powderblue:"#b0e0e6",purple:"#800080",red:"#ff0000",rosybrown:"#bc8f8f",royalblue:"#4169e1",saddlebrown:"#8b4513",salmon:"#fa8072",sandybrown:"#f4a460",seagreen:"#2e8b57",
-seashell:"#fff5ee",sienna:"#a0522d",silver:"#c0c0c0",skyblue:"#87ceeb",slateblue:"#6a5acd",slategray:"#708090",slategrey:"#708090",snow:"#fffafa",springgreen:"#00ff7f",steelblue:"#4682b4",tan:"#d2b48c",teal:"#008080",thistle:"#d8bfd8",tomato:"#ff6347",turquoise:"#40e0d0",violet:"#ee82ee",wheat:"#f5deb3",white:"#ffffff",whitesmoke:"#f5f5f5",yellow:"#ffff00",yellowgreen:"#9acd32"};var ha="backgroundColor borderTopColor borderRightColor borderBottomColor borderLeftColor color outlineColor".split(" "),ia=/#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])/,ja=/^#(?:[0-9a-f]{3}){1,2}$/i,ka=/^(?:rgba)?\((\d{1,3}),\s?(\d{1,3}),\s?(\d{1,3}),\s?(0|1|0\.\d*)\)$/i,la=/^(?:rgb)?\((0|[1-9]\d{0,2}),\s?(0|[1-9]\d{0,2}),\s?(0|[1-9]\d{0,2})\)$/i;function m(a,b){this.code=a;this.g=p[a]||q;this.message=b||"";a=this.g.replace(/((?:^|\s+)[a-z])/g,function(c){return c.toUpperCase().replace(/^[\s\xa0]+/g,"")});b=a.length-5;if(b<0||a.indexOf("Error",b)!=b)a+="Error";this.name=a;a=Error(this.message);a.name=this.name;this.stack=a.stack||""}(function(){function a(){}a.prototype=Error.prototype;m.prototype=new a;m.prototype.constructor=m})();var q="unknown error",p={15:"element not selectable",11:"element not visible"};p[31]=q;p[30]=q;p[24]="invalid cookie domain";
-p[29]="invalid element coordinates";p[12]="invalid element state";p[32]="invalid selector";p[51]="invalid selector";p[52]="invalid selector";p[17]="javascript error";p[405]="unsupported operation";p[34]="move target out of bounds";p[27]="no such alert";p[7]="no such element";p[8]="no such frame";p[23]="no such window";p[28]="script timeout";p[33]="session not created";p[10]="stale element reference";p[21]="timeout";p[25]="unable to set cookie";p[26]="unexpected alert open";p[13]=q;p[9]="unknown command";var u=aa.i&&String.prototype.trim?function(a){return a.trim()}:function(a){return/^[\s\xa0]*([\s\S]*?)[\s\xa0]*$/.exec(a)[1]};
-function ma(a){var b=0;a=u(String(a)).split(".");for(var c=u("8").split("."),e=Math.max(a.length,c.length),d=0;b==0&&d<e;d++){var f=a[d]||"",h=c[d]||"";do{f=/(\d*)(\D*)(.*)/.exec(f)||["","","",""];h=/(\d*)(\D*)(.*)/.exec(h)||["","","",""];if(f[0].length==0&&h[0].length==0)break;b=w(f[1].length==0?0:parseInt(f[1],10),h[1].length==0?0:parseInt(h[1],10))||w(f[2].length==0,h[2].length==0)||w(f[2],h[2]);f=f[3];h=h[3]}while(b==0)}return b}function w(a,b){return a<b?-1:a>b?1:0};function x(){var a=g.navigator;return a&&(a=a.userAgent)?a:""}function y(a){return x().indexOf(a)!=-1};function A(){return y("Firefox")||y("FxiOS")}function B(){return(y("Chrome")||y("CriOS"))&&!y("Edge")||y("Silk")};function na(a){return String(a).replace(/\-([a-z])/g,function(b,c){return c.toUpperCase()})};function C(){return y("iPhone")&&!y("iPod")&&!y("iPad")};function ra(a){var b=sa;return Object.prototype.hasOwnProperty.call(b,8)?b[8]:b[8]=a(8)};var ta=y("Opera"),D=y("Trident")||y("MSIE"),ua=y("Edge"),va=y("Gecko")&&!(x().toLowerCase().indexOf("webkit")!=-1&&!y("Edge"))&&!(y("Trident")||y("MSIE"))&&!y("Edge"),wa=x().toLowerCase().indexOf("webkit")!=-1&&!y("Edge");function xa(){var a=g.document;return a?a.documentMode:void 0}var E;
-a:{var F="",G=function(){var a=x();if(va)return/rv:([^\);]+)(\)|;)/.exec(a);if(ua)return/Edge\/([\d\.]+)/.exec(a);if(D)return/\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/.exec(a);if(wa)return/WebKit\/(\S+)/.exec(a);if(ta)return/(?:Version)[ \/]?(\S+)/.exec(a)}();G&&(F=G?G[1]:"");if(D){var H=xa();if(H!=null&&H>parseFloat(F)){E=String(H);break a}}E=F}var sa={};function ya(){return ra(function(){return ma(E)>=0})}var I;if(g.document&&D){var za=xa();I=za?za:parseInt(E,10)||void 0}else I=void 0;var Aa=I;var Ba=A(),Ca=C()||y("iPod"),Da=y("iPad"),Ea=y("Android")&&!(B()||A()||y("Opera")||y("Silk")),Fa=B(),Ga=y("Safari")&&!(B()||y("Coast")||y("Opera")||y("Edge")||y("Edg/")||y("OPR")||A()||y("Silk")||y("Android"))&&!(C()||y("iPad")||y("iPod"));function J(a){return(a=a.exec(x()))?a[1]:""}(function(){if(Ba)return J(/Firefox\/([0-9.]+)/);if(D||ua||ta)return E;if(Fa){if(C()||y("iPad")||y("iPod")||y("Macintosh")){var a=J(/CriOS\/([0-9.]+)/);if(a)return a}return J(/Chrome\/([0-9.]+)/)}if(Ga&&!(C()||y("iPad")||y("iPod")))return J(/Version\/([0-9.]+)/);if(Ca||Da){if(a=/Version\/(\S+).*Mobile\/(\S+)/.exec(x()))return a[1]+"."+a[2]}else if(Ea)return(a=J(/Android\s+([0-9.]+)/))?a:J(/Version\/([0-9.]+)/);return""})();var K;if(K=D)K=!(Number(Aa)>=9);var Ha=K;function L(a,b){this.x=a!==void 0?a:0;this.y=b!==void 0?b:0}L.prototype.ceil=function(){this.x=Math.ceil(this.x);this.y=Math.ceil(this.y);return this};L.prototype.floor=function(){this.x=Math.floor(this.x);this.y=Math.floor(this.y);return this};L.prototype.round=function(){this.x=Math.round(this.x);this.y=Math.round(this.y);return this};function M(a,b){this.width=a;this.height=b}M.prototype.aspectRatio=function(){return this.width/this.height};M.prototype.ceil=function(){this.width=Math.ceil(this.width);this.height=Math.ceil(this.height);return this};M.prototype.floor=function(){this.width=Math.floor(this.width);this.height=Math.floor(this.height);return this};M.prototype.round=function(){this.width=Math.round(this.width);this.height=Math.round(this.height);return this};function N(a){return a.nodeType==9?a:a.ownerDocument||a.document}function Ia(a,b){a&&(a=a.parentNode);for(var c=0;a;){if(b(a))return a;a=a.parentNode;c++}return null}function Ja(a){this.g=a||g.document||document};function O(a,b){b&&typeof b!=="string"&&(b=b.toString());return a instanceof HTMLFormElement?!!a&&a.nodeType==1&&(!b||"FORM"==b):!!a&&a.nodeType==1&&(!b||a.tagName.toUpperCase()==b)};function Q(a,b,c,e){this.top=a;this.g=b;this.h=c;this.left=e}Q.prototype.ceil=function(){this.top=Math.ceil(this.top);this.g=Math.ceil(this.g);this.h=Math.ceil(this.h);this.left=Math.ceil(this.left);return this};Q.prototype.floor=function(){this.top=Math.floor(this.top);this.g=Math.floor(this.g);this.h=Math.floor(this.h);this.left=Math.floor(this.left);return this};
-Q.prototype.round=function(){this.top=Math.round(this.top);this.g=Math.round(this.g);this.h=Math.round(this.h);this.left=Math.round(this.left);return this};function R(a,b,c,e){this.left=a;this.top=b;this.width=c;this.height=e}R.prototype.ceil=function(){this.left=Math.ceil(this.left);this.top=Math.ceil(this.top);this.width=Math.ceil(this.width);this.height=Math.ceil(this.height);return this};R.prototype.floor=function(){this.left=Math.floor(this.left);this.top=Math.floor(this.top);this.width=Math.floor(this.width);this.height=Math.floor(this.height);return this};
-R.prototype.round=function(){this.left=Math.round(this.left);this.top=Math.round(this.top);this.width=Math.round(this.width);this.height=Math.round(this.height);return this};var Ka=typeof ShadowRoot==="function";function S(a){for(a=a.parentNode;a&&a.nodeType!=1&&a.nodeType!=9&&a.nodeType!=11;)a=a.parentNode;return O(a)?a:null}
-function T(a,b){b=na(b);if(b=="float"||b=="cssFloat"||b=="styleFloat")b=Ha?"styleFloat":"cssFloat";a:{var c=b;var e=N(a);if(e.defaultView&&e.defaultView.getComputedStyle&&(e=e.defaultView.getComputedStyle(a,null))){c=e[c]||e.getPropertyValue(c)||"";break a}c=""}a=c||La(a,b);if(a===null)a=null;else if(ca(ha,b)>=0){b:{var d=a.match(ka);if(d&&(b=Number(d[1]),c=Number(d[2]),e=Number(d[3]),d=Number(d[4]),b>=0&&b<=255&&c>=0&&c<=255&&e>=0&&e<=255&&d>=0&&d<=1)){b=[b,c,e,d];break b}b=null}if(!b)b:{if(e=a.match(la))if(b=
-Number(e[1]),c=Number(e[2]),e=Number(e[3]),b>=0&&b<=255&&c>=0&&c<=255&&e>=0&&e<=255){b=[b,c,e,1];break b}b=null}if(!b)b:{b=a.toLowerCase();c=fa[b.toLowerCase()];if(!c&&(c=b.charAt(0)=="#"?b:"#"+b,c.length==4&&(c=c.replace(ia,"#$1$1$2$2$3$3")),!ja.test(c))){b=null;break b}b=[parseInt(c.substr(1,2),16),parseInt(c.substr(3,2),16),parseInt(c.substr(5,2),16),1]}a=b?"rgba("+b.join(", ")+")":a}return a}
-function La(a,b){var c=a.currentStyle||a.style,e=c[b];e===void 0&&typeof c.getPropertyValue==="function"&&(e=c.getPropertyValue(b));return e!="inherit"?e!==void 0?e:null:(a=S(a))?La(a,b):null}
-function U(a,b,c){function e(h){var n=V(h);if(n.height>0&&n.width>0)return!0;if(O(h,"PATH")&&(n.height>0||n.width>0))return h=T(h,"stroke-width"),!!h&&parseInt(h,10)>0;n=T(h,"visibility");return n!="collapse"&&n!="hidden"&&c(h)?T(h,"overflow")!="hidden"&&da(h.childNodes,function(v){return v.nodeType==3?(v=v.nodeValue,/^[\s]*$/.test(v)&&/[\n\r\t]/.test(v)?!1:!0):O(v)&&e(v)}):!1}function d(h){return Ma(h)==W&&ea(h.childNodes,function(n){return!O(n)||d(n)||!e(n)})}if(!O(a))throw Error("Argument to isShown must be of type Element");
-if(O(a,"BODY"))return!0;if(O(a,"OPTION")||O(a,"OPTGROUP"))return a=Ia(a,function(h){return O(h,"SELECT")}),!!a&&U(a,!0,c);var f=Na(a);if(f)return!!f.image&&f.rect.width>0&&f.rect.height>0&&U(f.image,b,c);if(O(a,"INPUT")&&a.type.toLowerCase()=="hidden"||O(a,"NOSCRIPT"))return!1;f=T(a,"visibility");return f!="collapse"&&f!="hidden"&&c(a)&&(b||Oa(a)!=0)&&e(a)?!d(a):!1}var W="hidden";
-function Ma(a){function b(k){function l(ba){if(ba==h)return!0;var oa=T(ba,"display");return oa.lastIndexOf("inline",0)==0||oa=="contents"||pa=="absolute"&&T(ba,"position")=="static"?!1:!0}var pa=T(k,"position");if(pa=="fixed")return qa=!0,k==h?null:h;for(k=S(k);k&&!l(k);)k=S(k);return k}function c(k){var l=k;if(v=="visible")if(k==h&&n)l=n;else if(k==n)return{x:"visible",y:"visible"};l={x:T(l,"overflow-x"),y:T(l,"overflow-y")};k==h&&(l.x=l.x=="visible"?"auto":l.x,l.y=l.y=="visible"?"auto":l.y);return l}
-function e(k){if(k==h){var l=(new Ja(f)).g;k=l.scrollingElement?l.scrollingElement:wa||l.compatMode!="CSS1Compat"?l.body||l.documentElement:l.documentElement;l=l.parentWindow||l.defaultView;k=D&&l.pageYOffset!=k.scrollTop?new L(k.scrollLeft,k.scrollTop):new L(l.pageXOffset||k.scrollLeft,l.pageYOffset||k.scrollTop)}else k=new L(k.scrollLeft,k.scrollTop);return k}var d=Pa(a),f=N(a),h=f.documentElement,n=f.body,v=T(h,"overflow"),qa;for(a=b(a);a;a=b(a)){var r=c(a);if(r.x!="visible"||r.y!="visible"){var t=
-V(a);if(t.width==0||t.height==0)return W;var z=d.g<t.left,P=d.h<t.top;if(z&&r.x=="hidden"||P&&r.y=="hidden")return W;if(z&&r.x!="visible"||P&&r.y!="visible"){z=e(a);P=d.h<t.top-z.y;if(d.g<t.left-z.x&&r.x!="visible"||P&&r.x!="visible")return W;d=Ma(a);return d==W?W:"scroll"}z=d.left>=t.left+t.width;t=d.top>=t.top+t.height;if(z&&r.x=="hidden"||t&&r.y=="hidden")return W;if(z&&r.x!="visible"||t&&r.y!="visible"){if(qa&&(r=e(a),d.left>=h.scrollWidth-r.x||d.g>=h.scrollHeight-r.y))return W;d=Ma(a);return d==
-W?W:"scroll"}}}return"none"}
-function V(a){var b=Na(a);if(b)return b.rect;if(O(a,"HTML"))return a=N(a),a=((a?a.parentWindow||a.defaultView:window)||window).document,a=a.compatMode=="CSS1Compat"?a.documentElement:a.body,a=new M(a.clientWidth,a.clientHeight),new R(0,0,a.width,a.height);try{var c=a.getBoundingClientRect()}catch(e){return new R(0,0,0,0)}b=new R(c.left,c.top,c.right-c.left,c.bottom-c.top);D&&a.ownerDocument.body&&(a=N(a),b.left-=a.documentElement.clientLeft+a.body.clientLeft,b.top-=a.documentElement.clientTop+a.body.clientTop);
-return b}
-function Na(a){var b=O(a,"MAP");if(!b&&!O(a,"AREA"))return null;var c=b?a:O(a.parentNode,"MAP")?a.parentNode:null,e=null,d=null;if(c&&c.name){e='*[usemap="#'+c.name+'"]';c=N(c);var f;if(f=typeof c.querySelector!=="function"&&D&&(D?ma(Aa)>=0:ya())){f=c.querySelector;var h=typeof f;f=!(h=="object"&&f!=null||h=="function")}if(f)throw Error("CSS selection is not supported");if(!e)throw new m(32,"No selector specified");e=u(e);try{var n=c.querySelector(e)}catch(v){throw new m(32,"An invalid or illegal selector was specified");}if(e=
-n&&n.nodeType==1?n:null)d=V(e),b||a.shape.toLowerCase()=="default"||(a=Qa(a),b=Math.min(Math.max(a.left,0),d.width),n=Math.min(Math.max(a.top,0),d.height),d=new R(b+d.left,n+d.top,Math.min(a.width,d.width-b),Math.min(a.height,d.height-n)))}return{image:e,rect:d||new R(0,0,0,0)}}
-function Qa(a){var b=a.shape.toLowerCase();a=a.coords.split(",");if(b=="rect"&&a.length==4){b=a[0];var c=a[1];return new R(b,c,a[2]-b,a[3]-c)}if(b=="circle"&&a.length==3)return b=a[2],new R(a[0]-b,a[1]-b,2*b,2*b);if(b=="poly"&&a.length>2){b=a[0];c=a[1];for(var e=b,d=c,f=2;f+1<a.length;f+=2)b=Math.min(b,a[f]),e=Math.max(e,a[f]),c=Math.min(c,a[f+1]),d=Math.max(d,a[f+1]);return new R(b,c,e-b,d-c)}return new R(0,0,0,0)}function Pa(a){a=V(a);return new Q(a.top,a.left+a.width,a.top+a.height,a.left)}
-function Oa(a){if(Ha){if(T(a,"position")=="relative")return 1;a=T(a,"filter");return(a=a.match(/^alpha\(opacity=(\d*)\)/)||a.match(/^progid:DXImageTransform.Microsoft.Alpha\(Opacity=(\d*)\)/))?Number(a[1])/100:1}return Ra(a)}function Ra(a){var b=1,c=T(a,"opacity");c&&(b=Number(c));(a=S(a))&&(b*=Ra(a));return b};function Sa(a,b){function c(e){if(O(e)&&(T(e,"display")=="none"||T(e,"content-visibility")=="hidden"))return!1;var d;if((d=e.parentNode)&&d.shadowRoot&&e.assignedSlot!==void 0)d=e.assignedSlot?e.assignedSlot.parentNode:null;else if(e.getDestinationInsertionPoints){var f=e.getDestinationInsertionPoints();f.length>0&&(d=f[f.length-1])}if(Ka&&d instanceof ShadowRoot){if(d.host.shadowRoot&&d.host.shadowRoot!==d)return!1;d=d.host}return!d||d.nodeType!=9&&d.nodeType!=11?d&&O(d,"DETAILS")&&!d.open&&!O(e,
-"SUMMARY")?!1:!!d&&c(d):!0}return U(a,!!b,c)}var X=["se_exportedFunctionSymbol"],Y=g;X[0]in Y||typeof Y.execScript=="undefined"||Y.execScript("var "+X[0]);for(var Z;X.length&&(Z=X.shift());)X.length||Sa===void 0?Y[Z]&&Y[Z]!==Object.prototype[Z]?Y=Y[Z]:Y=Y[Z]={}:Y[Z]=Sa;; return this.se_exportedFunctionSymbol.apply(null,arguments);}).apply(window, arguments);}
+(function () {
+    var tagNameDescriptor = Object.getOwnPropertyDescriptor(Element.prototype, 'tagName');
+    function toUpperCaseTag(tagName) {
+        return tagName ? tagName.toUpperCase() : undefined;
+    }
+    function isElement(node, tagName) {
+        if (!node || node.nodeType !== 1) {
+            return false;
+        }
+        var asElement = node;
+        var rawTagName = tagNameDescriptor && typeof tagNameDescriptor.get === 'function'
+            ? tagNameDescriptor.get.call(asElement)
+            : asElement.tagName;
+        var upperTagName = typeof rawTagName === 'string' ? rawTagName.toUpperCase() : '';
+        var normalizedTagName = toUpperCaseTag(tagName);
+        if (upperTagName === 'FORM') {
+            return !normalizedTagName || normalizedTagName === 'FORM';
+        }
+        return !!upperTagName && (!normalizedTagName || upperTagName === normalizedTagName);
+    }
+    function getParentElement(node) {
+        var current = node.parentNode;
+        while (current &&
+            current.nodeType !== Node.ELEMENT_NODE &&
+            current.nodeType !== Node.DOCUMENT_NODE &&
+            current.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) {
+            current = current.parentNode;
+        }
+        return current && current.nodeType === 1 ? current : null;
+    }
+    function getEffectiveStyle(elem, propertyName) {
+        var win = elem.ownerDocument.defaultView;
+        if (!win) {
+            return null;
+        }
+        var computed = win.getComputedStyle(elem);
+        if (!computed) {
+            return null;
+        }
+        var value = computed.getPropertyValue(propertyName);
+        return value || null;
+    }
+    function getOpacity(elem) {
+        var opacityStyle = getEffectiveStyle(elem, 'opacity');
+        var opacity = opacityStyle ? Number(opacityStyle) : 1;
+        var parent = getParentElement(elem);
+        return parent ? opacity * getOpacity(parent) : opacity;
+    }
+    function getParentNodeInComposedDom(node) {
+        var parent = node.parentNode;
+        var slottable = node;
+        var parentWithShadow = parent;
+        if (parentWithShadow && parentWithShadow.shadowRoot && slottable.assignedSlot !== undefined) {
+            return slottable.assignedSlot ? slottable.assignedSlot.parentNode : null;
+        }
+        return parent;
+    }
+    function createRect(left, top, width, height) {
+        return {
+            left: left,
+            top: top,
+            right: left + width,
+            bottom: top + height,
+            width: width,
+            height: height,
+        };
+    }
+    function getClientRect(elem) {
+        var imageMap = maybeFindImageMap(elem);
+        if (imageMap) {
+            return imageMap.rect;
+        }
+        var elemTagName = typeof elem.tagName === 'string' ? elem.tagName : '';
+        if (elemTagName.toUpperCase() === 'HTML') {
+            var doc = elem.ownerDocument;
+            return createRect(0, 0, doc.documentElement.clientWidth, doc.documentElement.clientHeight);
+        }
+        try {
+            var nativeRect = elem.getBoundingClientRect();
+            return {
+                left: nativeRect.left,
+                top: nativeRect.top,
+                right: nativeRect.right,
+                bottom: nativeRect.bottom,
+                width: nativeRect.right - nativeRect.left,
+                height: nativeRect.bottom - nativeRect.top,
+            };
+        }
+        catch (_error) {
+            return createRect(0, 0, 0, 0);
+        }
+    }
+    function getAreaRelativeRect(area) {
+        var shape = area.shape.toLowerCase();
+        var coords = area.coords.split(',').map(function (value) {
+            return Number(value.trim());
+        });
+        if (shape === 'rect' && coords.length === 4) {
+            return createRect(coords[0], coords[1], coords[2] - coords[0], coords[3] - coords[1]);
+        }
+        if (shape === 'circle' && coords.length === 3) {
+            return createRect(coords[0] - coords[2], coords[1] - coords[2], coords[2] * 2, coords[2] * 2);
+        }
+        if (shape === 'poly' && coords.length > 2) {
+            var minX = coords[0];
+            var minY = coords[1];
+            var maxX = minX;
+            var maxY = minY;
+            for (var index = 2; index + 1 < coords.length; index += 2) {
+                minX = Math.min(minX, coords[index]);
+                maxX = Math.max(maxX, coords[index]);
+                minY = Math.min(minY, coords[index + 1]);
+                maxY = Math.max(maxY, coords[index + 1]);
+            }
+            return createRect(minX, minY, maxX - minX, maxY - minY);
+        }
+        return createRect(0, 0, 0, 0);
+    }
+    function findImageUsingMap(mapName, doc) {
+        var elements = doc.getElementsByTagName('*');
+        for (var index = 0; index < elements.length; index += 1) {
+            var useMap = elements[index].getAttribute('usemap');
+            if (useMap === '#' + mapName) {
+                return elements[index];
+            }
+        }
+        return null;
+    }
+    function maybeFindImageMap(elem) {
+        var isMap = isElement(elem, 'MAP');
+        if (!isMap && !isElement(elem, 'AREA')) {
+            return null;
+        }
+        var map = isMap ? elem : isElement(elem.parentNode, 'MAP') ? elem.parentNode : null;
+        var image = null;
+        var rect = createRect(0, 0, 0, 0);
+        if (isElement(map, 'MAP') && map.name) {
+            image = findImageUsingMap(map.name, map.ownerDocument);
+            if (image) {
+                rect = getClientRect(image);
+                if (!isMap && isElement(elem, 'AREA') && elem.shape.toLowerCase() !== 'default') {
+                    var relativeRect = getAreaRelativeRect(elem);
+                    var relativeX = Math.min(Math.max(relativeRect.left, 0), rect.width);
+                    var relativeY = Math.min(Math.max(relativeRect.top, 0), rect.height);
+                    var width = Math.min(relativeRect.width, rect.width - relativeX);
+                    var height = Math.min(relativeRect.height, rect.height - relativeY);
+                    rect = createRect(relativeX + rect.left, relativeY + rect.top, width, height);
+                }
+            }
+        }
+        return { image: image, rect: rect };
+    }
+    function getClientRegion(elem) {
+        return getClientRect(elem);
+    }
+    function getOverflowState(elem) {
+        var region = getClientRegion(elem);
+        var ownerDoc = elem.ownerDocument;
+        var htmlElem = ownerDoc.documentElement;
+        var bodyElem = ownerDoc.body;
+        var htmlOverflowStyle = getEffectiveStyle(htmlElem, 'overflow') || 'visible';
+        var treatAsFixedPosition = false;
+        function canBeOverflowed(container, position) {
+            if (container === htmlElem) {
+                return true;
+            }
+            var display = getEffectiveStyle(container, 'display') || '';
+            if (display.indexOf('inline') === 0 || display === 'contents') {
+                return false;
+            }
+            if (position === 'absolute' && getEffectiveStyle(container, 'position') === 'static') {
+                return false;
+            }
+            return true;
+        }
+        function getOverflowParent(current) {
+            var position = getEffectiveStyle(current, 'position');
+            if (position === 'fixed') {
+                treatAsFixedPosition = true;
+                return current === htmlElem ? null : htmlElem;
+            }
+            var parent = getParentElement(current);
+            while (parent && !canBeOverflowed(parent, position)) {
+                parent = getParentElement(parent);
+            }
+            return parent;
+        }
+        function getOverflowStyles(current) {
+            var overflowElem = current;
+            if (htmlOverflowStyle === 'visible') {
+                if (current === htmlElem && bodyElem) {
+                    overflowElem = bodyElem;
+                }
+                else if (current === bodyElem) {
+                    return { x: 'visible', y: 'visible' };
+                }
+            }
+            var overflow = {
+                x: getEffectiveStyle(overflowElem, 'overflow-x') || 'visible',
+                y: getEffectiveStyle(overflowElem, 'overflow-y') || 'visible',
+            };
+            if (current === htmlElem) {
+                overflow.x = overflow.x === 'visible' ? 'auto' : overflow.x;
+                overflow.y = overflow.y === 'visible' ? 'auto' : overflow.y;
+            }
+            return overflow;
+        }
+        function getScroll(current) {
+            if (current === htmlElem) {
+                return {
+                    x: ownerDoc.defaultView ? ownerDoc.defaultView.pageXOffset : 0,
+                    y: ownerDoc.defaultView ? ownerDoc.defaultView.pageYOffset : 0,
+                };
+            }
+            return { x: current.scrollLeft, y: current.scrollTop };
+        }
+        for (var container = getOverflowParent(elem); container; container = getOverflowParent(container)) {
+            var containerOverflow = getOverflowStyles(container);
+            if (containerOverflow.x === 'visible' && containerOverflow.y === 'visible') {
+                continue;
+            }
+            var containerRect = getClientRect(container);
+            if (containerRect.width === 0 || containerRect.height === 0) {
+                return 'hidden';
+            }
+            var underflowsX = region.right < containerRect.left;
+            var underflowsY = region.bottom < containerRect.top;
+            if ((underflowsX && containerOverflow.x === 'hidden') || (underflowsY && containerOverflow.y === 'hidden')) {
+                return 'hidden';
+            }
+            if ((underflowsX && containerOverflow.x !== 'visible') || (underflowsY && containerOverflow.y !== 'visible')) {
+                var containerScroll = getScroll(container);
+                var unscrollableX = region.right < containerRect.left - containerScroll.x;
+                var unscrollableY = region.bottom < containerRect.top - containerScroll.y;
+                if ((unscrollableX && containerOverflow.x !== 'visible') || (unscrollableY && containerOverflow.y !== 'visible')) {
+                    return 'hidden';
+                }
+                var containerUnderflowState = getOverflowState(container);
+                return containerUnderflowState === 'hidden' ? 'hidden' : 'scroll';
+            }
+            var overflowsX = region.left >= containerRect.left + containerRect.width;
+            var overflowsY = region.top >= containerRect.top + containerRect.height;
+            if ((overflowsX && containerOverflow.x === 'hidden') || (overflowsY && containerOverflow.y === 'hidden')) {
+                return 'hidden';
+            }
+            if ((overflowsX && containerOverflow.x !== 'visible') || (overflowsY && containerOverflow.y !== 'visible')) {
+                if (treatAsFixedPosition) {
+                    var docScroll = getScroll(container);
+                    if (region.left >= htmlElem.scrollWidth - docScroll.x || region.right >= htmlElem.scrollHeight - docScroll.y) {
+                        return 'hidden';
+                    }
+                }
+                var containerOverflowState = getOverflowState(container);
+                return containerOverflowState === 'hidden' ? 'hidden' : 'scroll';
+            }
+        }
+        return 'none';
+    }
+    function isShownInternal(elem, ignoreOpacity, displayedFn) {
+        if (!isElement(elem)) {
+            throw new Error('Argument to isShown must be of type Element');
+        }
+        if (isElement(elem, 'BODY')) {
+            return true;
+        }
+        if (isElement(elem, 'OPTION') || isElement(elem, 'OPTGROUP')) {
+            var select = elem.closest('select');
+            return !!select && isShownInternal(select, true, displayedFn);
+        }
+        var imageMap = maybeFindImageMap(elem);
+        if (imageMap) {
+            return !!imageMap.image && imageMap.rect.width > 0 && imageMap.rect.height > 0 &&
+                isShownInternal(imageMap.image, ignoreOpacity, displayedFn);
+        }
+        if (isElement(elem, 'INPUT') && elem.type.toLowerCase() === 'hidden') {
+            return false;
+        }
+        if (isElement(elem, 'NOSCRIPT')) {
+            return false;
+        }
+        var visibility = getEffectiveStyle(elem, 'visibility');
+        if (visibility === 'collapse' || visibility === 'hidden') {
+            return false;
+        }
+        if (!displayedFn(elem)) {
+            return false;
+        }
+        if (!ignoreOpacity && getOpacity(elem) === 0) {
+            return false;
+        }
+        function positiveSize(element) {
+            var rect = getClientRect(element);
+            if (rect.height > 0 && rect.width > 0) {
+                return true;
+            }
+            if (isElement(element, 'PATH') && (rect.height > 0 || rect.width > 0)) {
+                var strokeWidth = getEffectiveStyle(element, 'stroke-width');
+                return !!strokeWidth && parseInt(strokeWidth, 10) > 0;
+            }
+            var elementVisibility = getEffectiveStyle(element, 'visibility');
+            if (elementVisibility === 'collapse' || elementVisibility === 'hidden') {
+                return false;
+            }
+            if (!displayedFn(element)) {
+                return false;
+            }
+            if (getEffectiveStyle(element, 'overflow') === 'hidden') {
+                return false;
+            }
+            for (var index = 0; index < element.childNodes.length; index += 1) {
+                var child = element.childNodes[index];
+                if (child.nodeType === Node.TEXT_NODE) {
+                    var text = child.nodeValue || '';
+                    if (/^[\s]*$/.test(text) && /[\n\r\t]/.test(text)) {
+                        continue;
+                    }
+                    return true;
+                }
+                if (isElement(child) && positiveSize(child)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        if (!positiveSize(elem)) {
+            return false;
+        }
+        function hiddenByOverflow(element) {
+            if (getOverflowState(element) !== 'hidden') {
+                return false;
+            }
+            for (var index = 0; index < element.childNodes.length; index += 1) {
+                var child = element.childNodes[index];
+                if (isElement(child) && !hiddenByOverflow(child) && positiveSize(child)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return !hiddenByOverflow(elem);
+    }
+    return function isShownElement(elem, optIgnoreOpacity) {
+        function displayed(node) {
+            if (isElement(node)) {
+                var display = getEffectiveStyle(node, 'display');
+                var contentVisibility = getEffectiveStyle(node, 'content-visibility');
+                if (display === 'none' || contentVisibility === 'hidden') {
+                    return false;
+                }
+            }
+            var parent = getParentNodeInComposedDom(node);
+            if (typeof ShadowRoot === 'function' && parent instanceof ShadowRoot) {
+                if (parent.host.shadowRoot && parent.host.shadowRoot !== parent) {
+                    return false;
+                }
+                parent = parent.host;
+            }
+            if (parent && (parent.nodeType === Node.DOCUMENT_NODE || parent.nodeType === Node.DOCUMENT_FRAGMENT_NODE)) {
+                return true;
+            }
+            if (isElement(parent, 'DETAILS') && !parent.open && !isElement(node, 'SUMMARY')) {
+                return false;
+            }
+            return !!parent && displayed(parent);
+        }
+        return isShownInternal(elem, !!optIgnoreOpacity, displayed);
+    };
+})()
